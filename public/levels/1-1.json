@@ -7,6 +7,14 @@
     {
       "tile": "ground",
       "ranges": [[0, 25, 12, 14]]
+    },
+    {
+      "tile": "ground",
+      "ranges": [[2, 10, 8, 9]]
+    },
+    {
+      "tile": "ground",
+      "ranges": [[2, 3, 11, 12]]
     }
   ]
 }
