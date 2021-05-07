@@ -1,9 +1,16 @@
 import { Vec2 } from "./math.js";
 
+export const Sides = {
+  TOP: Symbol("top"),
+  BOTTOM: Symbol("bottom"),
+};
+
 export class Trait {
   constructor(name) {
     this.NAME = name;
   }
+
+  obstruct() {}
 
   update() {
     console.warn("unhandled update call in trait");
@@ -22,6 +29,12 @@ export default class Entity {
   addTrait(trait) {
     this.traits.push(trait);
     this[trait.NAME] = trait;
+  }
+
+  obstruct(side) {
+    this.traits.forEach((trait) => {
+      trait.obstruct(this, side);
+    });
   }
 
   update(deltaTime) {
