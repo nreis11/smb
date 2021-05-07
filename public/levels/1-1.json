@@ -6,6 +6,11 @@
       "ranges": [[0, 212, 0, 13]]
     },
     {
+      "tile": "chance",
+      "type": "ground",
+      "ranges": [[3, 3]]
+    },
+    {
       "tile": "ground",
       "type": "ground",
       "ranges": [[0, 212, 13, 2]]
