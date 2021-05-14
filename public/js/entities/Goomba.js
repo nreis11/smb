@@ -15,7 +15,6 @@ function createGoombaFactory(sprite) {
 
   return function createGoomba() {
     const goomba = new Entity();
-    console.log(goomba);
 
     goomba.size.set(16, 16);
 
