@@ -1,7 +1,10 @@
 import Entity from "../Entity.js";
 import Jump from "../traits/Jump.js";
-import { loadSpriteSheet } from "../loaders.js";
+import Stomper from "../traits/Stomper.js";
+import Killable from "../traits/Killable.js";
 import Go from "../traits/Go.js";
+import { loadSpriteSheet } from "../loaders.js";
+import PlayerController from "../traits/PlayerController.js";
 
 const FAST_DRAG = 1 / 5000;
 const SLOW_DRAG = 1 / 1000;
@@ -14,6 +17,10 @@ function createMarioFactory(sprite) {
   const runAnim = sprite.animations.get("run");
 
   function routeFrame(mario) {
+    if (mario.killable.dead) {
+      return "die";
+    }
+
     if (mario.jump.falling) {
       return "jump";
     }
@@ -45,8 +52,10 @@ function createMarioFactory(sprite) {
 
     mario.addTrait(new Go());
     mario.addTrait(new Jump());
+    mario.addTrait(new Stomper());
+    mario.addTrait(new Killable());
 
-    // mario.go.dragFactor = SLOW_DRAG;
+    mario.killable.removeAfter = 0;
 
     mario.turbo = setTurboState;
     mario.turbo(false);
