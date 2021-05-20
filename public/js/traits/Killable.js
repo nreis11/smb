@@ -17,7 +17,8 @@ export default class Killable extends Trait {
     this.deadTime = 0;
   }
 
-  update(entity, deltaTime, level) {
+  update(entity, gameContext, level) {
+    const { deltaTime } = gameContext;
     if (this.dead) {
       this.deadTime += deltaTime;
       if (this.deadTime > this.removeAfter) {
