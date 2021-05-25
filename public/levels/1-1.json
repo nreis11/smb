@@ -97,6 +97,20 @@
           "ranges": [[0, 1, 1, 3]]
         }
       ]
+    },
+    "cannon-2h": {
+      "tiles": [
+        {
+          "name": "cannon-1",
+          "type": "ground",
+          "ranges": [[0, 0]]
+        },
+        {
+          "name": "cannon-2",
+          "type": "ground",
+          "ranges": [[0, 1]]
+        }
+      ]
     }
   },
 
@@ -247,6 +261,10 @@
             [128, 3],
             [138, 2]
           ]
+        },
+        {
+          "pattern": "cannon-2h",
+          "ranges": [[6, 7]]
         }
       ]
     }
@@ -259,6 +277,10 @@
     {
       "name": "goomba",
       "pos": [220, 0]
+    },
+    {
+      "name": "cannon",
+      "pos": [96, 112]
     }
   ]
 }

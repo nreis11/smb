@@ -21,7 +21,6 @@ export function loadMario(audioContext) {
 }
 
 function createMarioFactory(sprite, audio) {
-  console.log(audio);
   const runAnim = sprite.animations.get("run");
 
   function routeFrame(mario) {
