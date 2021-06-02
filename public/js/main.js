@@ -52,6 +52,7 @@ async function main(canvas) {
   };
 
   timer.start();
+  level.music.player.playTrack("main");
 }
 
 const start = () => {
