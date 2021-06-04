@@ -7,11 +7,18 @@ import { createSpriteLayer } from "../layers/sprites.js";
 import { createBackgroundLayer } from "../layers/background.js";
 import Entity from "../Entity.js";
 import LevelTimer from "../traits/LevelTimer.js";
+import Trigger from "../traits/Trigger.js";
 
 function createTimer() {
   const timer = new Entity();
   timer.addTrait(new LevelTimer());
   return timer;
+}
+
+function createTrigger() {
+  const entity = new Entity();
+  entity.addTrait(new Trigger());
+  return entity;
 }
 
 function loadPattern(name) {
@@ -72,11 +79,27 @@ export function createLevelLoader(entityFactory) {
 
         setupBackgrounds(levelSpec, level, backgroundSprites, patterns);
         setupEntities(levelSpec, level, entityFactory);
+        setupTriggers(levelSpec, level);
         setupBehavior(level);
 
         return level;
       });
   };
+}
+
+function setupTriggers(levelSpec, level) {
+  if (!levelSpec.triggers) {
+    return;
+  }
+  for (const triggerSpec of levelSpec.triggers) {
+    const entity = createTrigger();
+    entity.trigger.conditions.push((entity, touches, gc, level) => {
+      level.events.emit(Level.EVENT_TRIGGER, triggerSpec, entity, touches);
+    });
+    entity.size.set(64, 64);
+    entity.pos.set(triggerSpec.pos[0], triggerSpec.pos[1]);
+    level.entities.add(entity);
+  }
 }
 
 function createGrid(tiles, patterns) {
