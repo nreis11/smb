@@ -1,11 +1,11 @@
-import { Trait } from "../Entity.js";
+import Trait from "../Trait.js";
 import Stomper from "./Stomper.js";
 
 const COIN_LIFE_THRESHOLD = 100;
 
 export default class Player extends Trait {
   constructor() {
-    super("player");
+    super();
     this.name = "UNNAMED";
     this.lives = 3;
     this.score = 0;
@@ -13,7 +13,6 @@ export default class Player extends Trait {
 
     this.listen(Stomper.EVENT_STOMP, () => {
       this.score += 100;
-      console.log("Score", this.score);
     });
   }
 

@@ -24,33 +24,39 @@ function createMarioFactory(sprite, audio) {
   const runAnim = sprite.animations.get("run");
 
   function routeFrame(mario) {
-    if (mario.killable.dead) {
+    if (mario.traits.get(Killable).dead) {
       return "die";
     }
 
-    if (mario.jump.falling) {
+    if (mario.traits.get(Jump).falling) {
       return "jump";
     }
 
-    if (mario.go.distance > 0) {
+    if (mario.traits.get(Go).distance > 0) {
       if (
-        (mario.go.dir < 0 && mario.vel.x > 0) ||
-        (mario.vel.x < 0 && mario.go.dir > 0)
+        (mario.traits.get(Go).dir < 0 && mario.vel.x > 0) ||
+        (mario.vel.x < 0 && mario.traits.get(Go).dir > 0)
       ) {
         return "break";
       }
-      return runAnim(mario.go.distance);
+      return runAnim(mario.traits.get(Go).distance);
     } else {
       return "idle";
     }
   }
 
   function setTurboState(turboOn) {
-    this.go.dragFactor = turboOn ? FAST_DRAG : SLOW_DRAG;
+    this.traits.get(Go).dragFactor = turboOn ? FAST_DRAG : SLOW_DRAG;
   }
 
   function drawMario(context) {
-    sprite.draw(routeFrame(this), context, 0, 0, this.go.heading < 0);
+    sprite.draw(
+      routeFrame(this),
+      context,
+      0,
+      0,
+      this.traits.get(Go).heading < 0
+    );
   }
 
   return function createMario() {
@@ -65,7 +71,7 @@ function createMarioFactory(sprite, audio) {
     mario.addTrait(new Stomper());
     mario.addTrait(new Killable());
 
-    mario.killable.removeAfter = 0;
+    mario.traits.get(Killable).removeAfter = 0;
 
     mario.turbo = setTurboState;
     mario.turbo(false);

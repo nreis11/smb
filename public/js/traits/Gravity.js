@@ -1,8 +1,8 @@
-import { Trait } from "../Entity.js";
+import Trait from "../Trait.js";
 
 export default class Gravity extends Trait {
   constructor() {
-    super("gravity");
+    super();
   }
 
   update(entity, { deltaTime }, level) {
