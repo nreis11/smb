@@ -16,7 +16,7 @@ export function createPlayerProgressLayer(font, level) {
 
   return function drawPlayerProgress(context) {
     const entity = getPlayer(level.entities);
-    const player = entity.traits.get(Player);
+    const player = entity.getTrait(Player);
     font.print("WORLD " + level.name, context, size * 12, size * 12);
 
     spriteBufferContext.clearRect(

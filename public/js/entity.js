@@ -34,6 +34,14 @@ export default class Entity {
     this.traits.set(trait.constructor, trait);
   }
 
+  hasTrait(trait) {
+    return this.traits.has(trait);
+  }
+
+  getTrait(trait) {
+    return this.traits.get(trait);
+  }
+
   collides(candidate) {
     this.traits.forEach((trait) => {
       trait.collides(this, candidate);

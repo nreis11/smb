@@ -17,16 +17,16 @@ class Behavior extends Trait {
   }
 
   collides(us, them) {
-    if (us.traits.get(Killable).dead) {
+    if (us.getTrait(Killable).dead) {
       return;
     }
 
-    if (them.traits.has(Stomper)) {
+    if (them.hasTrait(Stomper)) {
       if (them.vel.y > us.vel.y) {
-        us.traits.get(Killable).kill();
-        us.traits.get(PendulumMove).speed = 0;
+        us.getTrait(Killable).kill();
+        us.getTrait(PendulumMove).speed = 0;
       } else {
-        them.traits.get(Killable).kill();
+        them.getTrait(Killable).kill();
       }
     }
   }
@@ -36,7 +36,7 @@ function createGoombaFactory(sprite) {
   const walkAnim = sprite.animations.get("walk");
 
   function routeAnim(goomba) {
-    if (goomba.traits.get(Killable).dead) {
+    if (goomba.getTrait(Killable).dead) {
       return "flat";
     }
 

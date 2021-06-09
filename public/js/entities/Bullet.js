@@ -17,22 +17,22 @@ class Behavior extends Trait {
   }
 
   collides(us, them) {
-    if (us.traits.get(Killable).dead) {
+    if (us.getTrait(Killable).dead) {
       return;
     }
 
-    if (them.traits.has(Stomper)) {
+    if (them.hasTrait(Stomper)) {
       if (them.vel.y > us.vel.y) {
-        us.traits.get(Killable).kill();
+        us.getTrait(Killable).kill();
         us.vel.set(100, -200);
       } else {
-        them.traits.get(Killable).kill();
+        them.getTrait(Killable).kill();
       }
     }
   }
 
   update(entity, gameContext, level) {
-    if (entity.traits.get(Killable).dead) {
+    if (entity.getTrait(Killable).dead) {
       this.gravity.update(entity, gameContext, level);
     }
   }

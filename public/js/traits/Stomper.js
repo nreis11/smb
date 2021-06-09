@@ -15,7 +15,7 @@ export default class Stomper extends Trait {
   }
 
   collides(us, them) {
-    if (!them.traits.has(Killable) || them.traits.get(Killable).dead) {
+    if (!them.hasTrait(Killable) || them.getTrait(Killable).dead) {
       return;
     }
 

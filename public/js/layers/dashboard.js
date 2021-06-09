@@ -4,14 +4,14 @@ import Player from "../traits/Player.js";
 
 function getPlayerTrait(entities) {
   for (const entity of findPlayers(entities)) {
-    return entity.traits.get(Player);
+    return entity.getTrait(Player);
   }
 }
 
 function getTimerTrait(entities) {
   for (const entity of entities) {
-    if (entity.traits.has(LevelTimer)) {
-      return entity.traits.get(LevelTimer);
+    if (entity.hasTrait(LevelTimer)) {
+      return entity.getTrait(LevelTimer);
     }
   }
 }

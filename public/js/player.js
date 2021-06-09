@@ -4,7 +4,7 @@ import PlayerController from "./traits/PlayerController.js";
 
 export function* findPlayers(entities) {
   for (const entity of entities) {
-    if (entity.traits.has(Player)) {
+    if (entity.hasTrait(Player)) {
       yield entity;
     }
   }
